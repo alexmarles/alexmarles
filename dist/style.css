@@ -24,7 +24,7 @@ h1 {
     margin: 200px 0;
     text-align: center;
 
-    font-size: calc(2 * var(--base-font-size);
+    font-size: calc(2 * var(--base-font-size));
 
     animation-direction: normal;
     animation-duration: 10s;
