@@ -1,6 +1,6 @@
 # 👋 Hello! I'm Àlex! 🙃
 
-I'm a UX Designer and Front-end Developer (what you might call UX Engineer) based in ☀️ Barcelona 🏖️.
+I'm a UX Engineer (which means I am both a UX Designer and Front-end Developer, all in one package) based in ☀️ Barcelona 🏖️.
 
 
 I like to design and build innovative and delightful experiences for the users 🥰. I am interested in techniques and tools that help me better understand my users and find the best way for them to enjoy the products that I work on.
