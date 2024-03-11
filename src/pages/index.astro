@@ -8,7 +8,7 @@ const greeting = GREETINGS[Date.now() % GREETINGS.length];
 const inbox = INBOXES[Date.now() % INBOXES.length];
 ---
 
-<Layout title="Àlex Marlés — UX Engineer from Barcelona">
+<Layout title="Àlex Marlés — UX Engineer from Barcelona" inbox={inbox}>
     <main>
         <h1>{greeting}</h1>
         <p>I am Àlex, a passionate UX Engineer based in ☀️ Barcelona.</p>
