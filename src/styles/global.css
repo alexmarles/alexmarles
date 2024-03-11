@@ -1,0 +1,74 @@
+:root {
+    --space-cadet: #323649;
+    --white: #fffdfd;
+    --teal: #008080;
+    --bittersweet: #f87060;
+
+    --primary: var(--space-cadet);
+    --background: var(--white);
+    --secondary: var(--teal);
+    --accent: var(--bittersweet);
+
+    --ff-primary: 'Libre Franklin', sans-serif;
+    --ff-secondary: 'Andada Pro', serif;
+
+    --fs-base: 20px;
+
+    --fw-reg: 400;
+    --fw-med: 500;
+    --fw-semi: 600;
+}
+
+html, body {
+    min-height: 100dvh;
+
+    font-family: var(--ff-primary);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-med);
+    line-height: 28px;
+
+    background: var(--background);
+}
+
+h1, h2, p, small {
+    color: var(--primary);
+}
+
+h1, h2 {
+    font-family: var(--ff-secondary);
+    font-weight: var(--fw-semi);
+
+    color: var(--primary);
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 38px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 30px;
+}
+
+p {
+    letter-spacing: 0.03rem;
+}
+
+small {
+    font-size: 14px;
+    font-weight: var(--fw-reg);
+    line-height: 18px;
+}
+
+a {
+    color: var(--secondary);
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:active {
+        color: var(--accent);
+    }
+}
