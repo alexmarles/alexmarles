@@ -28,6 +28,20 @@ html, body {
     background: var(--background);
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 2.5rem 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0.5rem 2rem;
+}
+
 h1, h2, p, small {
     color: var(--primary);
 }
