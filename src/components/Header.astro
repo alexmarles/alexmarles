@@ -1,13 +1,23 @@
 ---
+interface Props {
+    path: string;
+}
 
+const { path } = Astro.props;
 ---
 
 <header class="main-header">
-    <a class="header-link current" href="#">
+    <a
+        class:list={['header-link', { current: path.includes('about') }]}
+        href="/about/"
+    >
         <h2>About</h2>
     </a>
-    <a class="logo" href="#">Àlex Marlés</a>
-    <a class="header-link" href="#">
+    <a class="logo" href="/">Àlex Marlés</a>
+    <a
+        class:list={['header-link', { current: path.includes('work') }]}
+        href="/work/"
+    >
         <h2>Work</h2>
     </a>
 </header>
@@ -47,5 +57,10 @@
         background-size: cover;
         background-repeat: no-repeat;
         text-indent: -9000px;
+
+        &:hover,
+        &:active {
+            border-width: 0px;
+        }
     }
 </style>
