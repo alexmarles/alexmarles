@@ -7,19 +7,22 @@ const { inbox } = Astro.props;
 ---
 
 <footer class="main-footer">
-    <h1>Àlex Marlés</h1>
+    <h2>Àlex Marlés</h2>
     <small>{inbox}@alexmarles.com</small>
     <div class="social-links">
-        <a href="#">LinkedIn</a>
-        <a href="#">Twitter</a>
-        <a href="#">Bluesky</a>
+        <a href="https://www.linkedin.com/in/alexmarles/" target="_blank"
+            >LinkedIn</a
+        >
+        <a href="https://twitter.com/alexmarles" target="_blank">Twitter</a>
+        <a href="https://bsky.app/profile/unicoder.dev" target="_blank"
+            >Bluesky</a
+        >
     </div>
 </footer>
 
 <style>
     .main-footer {
         width: 100%;
-        align-self: flex-end;
 
         display: flex;
         flex-direction: column;
