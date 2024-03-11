@@ -20,8 +20,6 @@
 }
 
 html, body {
-    min-height: 100dvh;
-
     font-family: var(--ff-primary);
     font-size: var(--fs-base);
     font-weight: var(--fw-med);
@@ -63,6 +61,7 @@ small {
 
 a {
     color: var(--secondary);
+    text-decoration: none;
 
     &:hover {
         text-decoration: underline;
