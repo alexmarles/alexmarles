@@ -12,7 +12,16 @@
     --ff-primary: 'Libre Franklin', sans-serif;
     --ff-secondary: 'Andada Pro', serif;
 
-    --fs-base: 20px;
+    --fs-base: 16px;
+    --fs-s: 0.875rem;
+    --fs-m: 1.25rem;
+    --fs-l: 1.5rem;
+    --fs-xl: 2rem;
+
+    --fh-s: 1.125rem;
+    --fh-m: 1.75rem;
+    --fh-l: 1.875rem;
+    --fh-xl: 2.375rem;
 
     --fw-reg: 400;
     --fw-med: 500;
@@ -54,23 +63,25 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 2rem;
-    line-height: 38px;
+    font-size: var(--fs-xl);
+    line-height: var(--fh-xl);
 }
 
 h2 {
-    font-size: 1.5rem;
-    line-height: 30px;
+    font-size: var(--fs-l);
+    line-height: var(--fh-l);
 }
 
 p {
+    font-size: var(--fs-m);
+    line-height: var(--fh-m);
     letter-spacing: 0.03rem;
 }
 
 small {
-    font-size: 14px;
+    font-size: var(--fs-s);
     font-weight: var(--fw-reg);
-    line-height: 18px;
+    line-height: var(--fh-s);
 }
 
 a {
