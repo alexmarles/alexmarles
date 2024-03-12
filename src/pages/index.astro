@@ -1,16 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const GREETINGS = ['Hello! 👋', 'Hola! 👋', 'Hej hej! 👋'];
-const INBOXES = ['hello', 'hola', 'hejhej'];
-
-const greeting = GREETINGS[Date.now() % GREETINGS.length];
-const inbox = INBOXES[Date.now() % INBOXES.length];
 ---
 
-<Layout title="Àlex Marlés — UX Engineer from Barcelona" inbox={inbox}>
+<Layout title="Àlex Marlés — UX Engineer from Barcelona">
     <main>
-        <h1>{greeting}</h1>
+        <astro-greeting><h1 id="greeting">Hello! 👋</h1></astro-greeting>
         <p>I am Àlex, a passionate UX Engineer based in ☀️ Barcelona.</p>
         <p>
             I am a creator at the intersection of Design & Development,
@@ -20,6 +14,40 @@ const inbox = INBOXES[Date.now() % INBOXES.length];
             With a keen eye for design and a coder's precision, I bridge the gap
             between stunning aesthetics and seamless functionality.
         </p>
-        <p>Come say hi! 👉 {inbox}@alexmarles.com</p>
+        <astro-inbox
+            ><p>
+                Come say hi! 👉 <span id="inbox">hello</span>@alexmarles.com
+            </p></astro-inbox
+        >
     </main>
 </Layout>
+
+<script>
+    const time = Date.now();
+    const GREETINGS = ['Hello! 👋', 'Hola! 👋', 'Hej hej! 👋'];
+    const greeting = GREETINGS[time % GREETINGS.length];
+    const INBOXES = ['hello', 'hola', 'hejhej'];
+    const inbox = INBOXES[time % INBOXES.length];
+
+    document.querySelector('#footer-inbox').innerHTML = inbox;
+    class Greeting extends HTMLElement {
+        constructor() {
+            super();
+
+            const greetingEl = this.querySelector('#greeting');
+            greetingEl.innerHTML = greeting;
+        }
+    }
+
+    class Inbox extends HTMLElement {
+        constructor() {
+            super();
+
+            const inboxEl = this.querySelector('#inbox');
+            inboxEl.innerHTML = inbox;
+        }
+    }
+
+    customElements.define('astro-greeting', Greeting);
+    customElements.define('astro-inbox', Inbox);
+</script>
