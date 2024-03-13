@@ -86,16 +86,36 @@ small {
 }
 
 a {
-    color: var(--secondary);
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
+    --link-color: var(--secondary);
 
-    &:hover {
-        border-color: var(--secondary);
+    position: relative;
+    color: var(--link-color);
+    text-decoration: none;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: -3px;
+        transform-origin: 0%;
+        transform: scaleX(0);
+        transition: transform 150ms ease-in;
     }
 
     &:active {
-        color: var(--accent);
-        border-color: var(--accent);
+        --link-color: var(--accent);
+    }
+
+    &:hover::after {
+        background-color: var(--link-color);
+        transform: scaleX(1);
+    }
+
+    &:active::after {
+        transform: scaleX(0);
+        transform-origin: 100%;
     }
 }

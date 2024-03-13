@@ -36,16 +36,13 @@ const { path } = Astro.props;
     }
 
     .header-link {
-        color: var(--primary);
-
-        &:hover,
-        &:active,
-        &.current {
-            color: var(--primary);
+        &:active::after {
+            transform: scaleX(1);
         }
 
-        &.current {
-            border-color: var(--accent);
+        &.current::after {
+            background-color: var(--accent);
+            transform: scaleX(1);
         }
     }
 
@@ -58,9 +55,9 @@ const { path } = Astro.props;
         background-repeat: no-repeat;
         text-indent: -9000px;
 
-        &:hover,
-        &:active {
-            border-width: 0px;
+        &:hover::after,
+        &:active::after {
+            display: none;
         }
     }
 </style>
