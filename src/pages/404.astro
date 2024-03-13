@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 — Àlex Marlés">
+    <main>
+        <h1>for oh! for</h1>
+        <astro-lost-gif><img id="gif" /></astro-lost-gif>
+    </main>
+</Layout>
+
+<style>
+    img {
+        width: 100%;
+        max-width: 500px;
+    }
+</style>
+
+<script>
+    class LostGif extends HTMLElement {
+        constructor() {
+            super();
+
+            const GIFS = [
+                {
+                    src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmY4b3hucGxwNjl3Z243ODQzZ2xmZHJ3ZTR0dGQ1dnNzZ2w2OTdiaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ktcUyw6mBlMVa/giphy.gif',
+                    alt: 'Nick Offerman as Ron Swanson, from Parks and Recreation, throwing away a computer',
+                    aspectRatio: '245/169',
+                },
+                {
+                    src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmY1bmp6MnBpYWQwaXl2MHJ3dzhsNmczMTRqeHlnOGVuNG5vaHVoMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUOxeRVBTkYT2yOC5y/giphy.gif',
+                    alt: 'Andy Samberg as Jake Peralta saying "This is awkward" in a Brooklyn 99 scene',
+                    aspectRatio: '16/9',
+                },
+                {
+                    src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWxzYW85OXRtbjAxNjg4N21kdmc1cnB4OW8zZGo3NzhqbjNtZHNzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vyTnNTrs3wqQ0UIvwE/giphy-downsized.gif',
+                    alt: 'The Office gif. Steve Carell as Michael wears a suit and angrily shouts, "No! No! God please! No! No!"',
+                    aspectRatio: '480/400',
+                },
+                {
+                    src: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXRycjhrbm1qemtoMnR5OHVkNWp2Z3d6MmV6eGJramMxNnV1c2tqciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZXG9RubuzpNTMTXp1f/giphy-downsized.gif',
+                    alt: 'Amy Poehler as Leslie Knope confused and asks "Where am I?"',
+                    aspectRatio: '480/480',
+                },
+            ];
+            const time = Date.now();
+            const gif = GIFS[time % GIFS.length];
+
+            const gifEl = this.querySelector('#gif');
+            if (gifEl) {
+                gifEl.setAttribute('src', gif.src);
+                gifEl.setAttribute('alt', gif.alt);
+                (gifEl as HTMLElement).style.aspectRatio = gif.aspectRatio;
+            }
+        }
+    }
+
+    customElements.define('astro-lost-gif', LostGif);
+</script>
