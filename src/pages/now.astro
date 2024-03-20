@@ -3,11 +3,29 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Now — Àlex Marlés">
-    <astro-right-now>
-        <main>
-            <h1 id="right-now">Right now I am...</h1>
-        </main>
-    </astro-right-now>
+    <main>
+        <h1 id="right-now">Right now I am...</h1>
+        <astro-right-now class="hidden"></astro-right-now>
+    </main>
 </Layout>
+
+<style>
+    astro-right-now {
+        display: inherit;
+        flex-direction: inherit;
+        gap: inherit;
+
+        visibility: visible;
+        opacity: 1;
+        transition:
+            visibility 300ms ease-in-out,
+            opacity 300ms ease-in-out;
+
+        &.hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+</style>
 
 <script src="../scripts/getActivities.ts"></script>

@@ -40,7 +40,12 @@ async function getEntries(db, activity) {
 }
 
 async function getAllActivities(db) {
-    const activities: Activity[] = await getActivities(db);
+    let activities: Activity[] = JSON.parse(
+        sessionStorage.getItem('activities')
+    );
+    if (activities) return activities;
+
+    activities = await getActivities(db);
     for (let [i, activity] of activities.entries()) {
         const entries = await getEntries(db, activity);
         activities[i] = {
@@ -48,6 +53,7 @@ async function getAllActivities(db) {
             entries,
         };
     }
+    sessionStorage.setItem('activities', JSON.stringify(activities));
     return activities;
 }
 
@@ -56,22 +62,21 @@ class RightNow extends HTMLElement {
         super();
 
         getAllActivities(db).then(activities => {
-            console.log(activities);
-            const rightNowEl = this.querySelector('#right-now').parentNode;
-
             activities.forEach(activity => {
                 if (activity.title && activity.entries.length) {
                     const heading = document.createElement('h2');
                     heading.innerHTML = activity.title;
-                    rightNowEl.append(heading);
+                    this.append(heading);
 
                     activity.entries.forEach(entry => {
-                        const entryEl = document.createElement('p');
-                        entryEl.innerHTML = entry.name;
-                        rightNowEl.append(entryEl);
+                        const line = document.createElement('p');
+                        line.innerHTML = entry.name;
+                        this.append(line);
                     });
                 }
             });
+
+            this.classList.remove('hidden');
         });
     }
 }
