@@ -23,13 +23,24 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-    const time = Date.now();
-    const GREETINGS = ['Hello! 👋', 'Hola! 👋', 'Hej hej! 👋'];
-    const greeting = GREETINGS[time % GREETINGS.length];
-    const INBOXES = ['hello', 'hola', 'hejhej'];
-    const inbox = INBOXES[time % INBOXES.length];
+    let greeting;
+    let inbox;
 
-    document.querySelector('#footer-inbox').innerHTML = inbox;
+    function chooseGreeting() {
+        const time = Math.floor(Date.now() / 1000);
+        const GREETINGS = ['Hello! 👋', 'Hola! 👋', 'Hej hej! 👋'];
+        const INBOXES = ['hello', 'hola', 'hejhej'];
+
+        greeting = GREETINGS[time % GREETINGS.length];
+        inbox = INBOXES[time % INBOXES.length];
+        window.console.log({ inbox });
+
+        document.querySelector('#footer-inbox').innerHTML = inbox;
+    }
+
+    chooseGreeting();
+    document.addEventListener('astro:page-load', chooseGreeting);
+
     class Greeting extends HTMLElement {
         constructor() {
             super();

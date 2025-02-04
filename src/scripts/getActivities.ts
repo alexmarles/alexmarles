@@ -69,7 +69,7 @@ class RightNow extends HTMLElement {
                     this.append(heading);
 
                     activity.entries.forEach(entry => {
-                        const line = document.createElement('p');
+                        const line = document.createElement('small');
                         line.innerHTML = entry.name;
                         this.append(line);
                     });

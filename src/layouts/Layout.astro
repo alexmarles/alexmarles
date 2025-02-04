@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 import '../styles/reset.css';
 import '../styles/fonts.css';
 import '../styles/global.css';
@@ -15,7 +17,7 @@ const { title, inbox = 'hello' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="fade">
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
@@ -23,9 +25,10 @@ const { title, inbox = 'hello' } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
+        <ViewTransitions />
     </head>
     <body>
-        <Header path={Astro.url.pathname} />
+        <Header path={Astro.url.pathname} transition:persist />
         <slot />
         <Footer inbox={inbox} />
     </body>
