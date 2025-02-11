@@ -14,11 +14,27 @@ interface Props {
 }
 
 const { title, inbox = 'hello' } = Astro.props;
+const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
 ---
 
 <!doctype html>
 <html lang="en" transition:animate="fade">
     <head>
+        <!-- Google tag (gtag.js) -->
+        <script
+            type="text/partytown"
+            async
+            src=`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+        ></script>
+        <script type="text/partytown">
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', GA_MEASUREMENT_ID);
+        </script>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
