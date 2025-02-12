@@ -2,7 +2,7 @@
     "name": "alexmarles",
     "type": "module",
     "version": "0.0.1",
-    "repository": "git@github.com:alexmarles/alexmarles.github.io.git",
+    "repository": "git@github.com:alexmarles/alexmarles.git",
     "author": "Àlex Marlés Alcaraz <alex@alexmarles.com>",
     "license": "MIT",
     "packageManager": "pnpm@10.3.0",
