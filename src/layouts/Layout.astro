@@ -10,10 +10,9 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
     title: string;
-    inbox?: string;
 }
 
-const { title, inbox = 'hello' } = Astro.props;
+const { title } = Astro.props;
 const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
 ---
 
@@ -46,6 +45,6 @@ const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
     <body>
         <Header path={Astro.url.pathname} transition:persist />
         <slot />
-        <Footer inbox={inbox} />
+        <Footer />
     </body>
 </html>

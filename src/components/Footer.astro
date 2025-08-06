@@ -1,14 +1,10 @@
 ---
-interface Props {
-    inbox: string;
-}
-
-const { inbox } = Astro.props;
+import Inbox from './Inbox.jsx';
 ---
 
 <footer class="main-footer">
     <h2>Àlex Marlés</h2>
-    <small><span id="footer-inbox">{inbox}</span>@alexmarles.com</small>
+    <small><Inbox client:load /></small>
     <div class="social-links">
         <a href="https://www.linkedin.com/in/alexmarles/" target="_blank"
             >LinkedIn</a

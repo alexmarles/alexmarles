@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Inbox from '../components/Inbox.jsx';
+import Greeting from '../components/Greeting.jsx';
 ---
 
 <Layout title="Àlex Marlés — UX Engineer from Barcelona">
     <main>
-        <astro-greeting><h1 id="greeting">Hello! 👋</h1></astro-greeting>
+        <Greeting client:load />
         <p>I am Àlex, a passionate UX Engineer based in ☀️ Barcelona.</p>
         <p>
             I am a creator at the intersection of Design & Development,
@@ -14,51 +16,8 @@ import Layout from '../layouts/Layout.astro';
             With a keen eye for design and a coder's precision, I bridge the gap
             between stunning aesthetics and seamless functionality.
         </p>
-        <astro-inbox
-            ><p>
-                Come say hi! 👉 <span id="inbox">hello</span>@alexmarles.com
-            </p></astro-inbox
-        >
+        <p>
+            Come say hi! 👉 <Inbox client:load />
+        </p>
     </main>
 </Layout>
-
-<script>
-    let greeting;
-    let inbox;
-
-    function chooseGreeting() {
-        const time = Math.floor(Date.now() / 1000);
-        const GREETINGS = ['Hello! 👋', 'Hola! 👋', 'Hej hej! 👋'];
-        const INBOXES = ['hello', 'hola', 'hejhej'];
-
-        greeting = GREETINGS[time % GREETINGS.length];
-        inbox = INBOXES[time % INBOXES.length];
-        window.console.log({ inbox });
-
-        document.querySelector('#footer-inbox').innerHTML = inbox;
-    }
-
-    chooseGreeting();
-    document.addEventListener('astro:page-load', chooseGreeting);
-
-    class Greeting extends HTMLElement {
-        constructor() {
-            super();
-
-            const greetingEl = this.querySelector('#greeting');
-            greetingEl.innerHTML = greeting;
-        }
-    }
-
-    class Inbox extends HTMLElement {
-        constructor() {
-            super();
-
-            const inboxEl = this.querySelector('#inbox');
-            inboxEl.innerHTML = inbox;
-        }
-    }
-
-    customElements.define('astro-greeting', Greeting);
-    customElements.define('astro-inbox', Inbox);
-</script>
