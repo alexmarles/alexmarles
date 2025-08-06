@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 import '../styles/reset.css';
 import '../styles/fonts.css';
@@ -18,7 +18,7 @@ const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
 ---
 
 <!doctype html>
-<html lang="en" transition:animate="fade">
+<html lang="en">
     <head>
         <!-- Google tag (gtag.js) -->
         <script
@@ -41,7 +41,7 @@ const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
-        <ViewTransitions />
+        <ClientRouter />
     </head>
     <body>
         <Header path={Astro.url.pathname} transition:persist />
