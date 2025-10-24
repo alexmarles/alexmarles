@@ -1,16 +1,19 @@
 import { app } from '../firebase/client';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
-interface Entry {
-    id: string;
-    name: string;
-    type: string;
-}
+const BOOK_TYPE = 'book';
+const VIDEOGAME_TYPE = 'videogame';
+const BOOK_ID = 'books';
+const VIDEOGAME_ID = 'videogames';
+const BOOK_TITLE = 'Reading';
+const VIDEOGAME_TITLE = 'Playing';
 
 interface Activity {
     id: string;
+    type: string;
     title: string;
-    entries: Entry[];
+    author?: string;
+    platform?: string;
 }
 
 const db = getFirestore(app);
@@ -26,19 +29,6 @@ async function getActivities(db) {
     );
 }
 
-async function getEntries(db, activity) {
-    const entriesSnapshot = await getDocs(
-        collection(db, 'activities', activity.id, 'entries')
-    );
-    return entriesSnapshot.docs.map(
-        doc =>
-            ({
-                id: doc.id,
-                ...doc.data(),
-            } as Entry)
-    );
-}
-
 async function getAllActivities(db) {
     let activities: Activity[] = JSON.parse(
         sessionStorage.getItem('activities')
@@ -46,13 +36,6 @@ async function getAllActivities(db) {
     if (activities) return activities;
 
     activities = await getActivities(db);
-    for (let [i, activity] of activities.entries()) {
-        const entries = await getEntries(db, activity);
-        activities[i] = {
-            ...activity,
-            entries,
-        };
-    }
     sessionStorage.setItem('activities', JSON.stringify(activities));
     return activities;
 }
@@ -63,17 +46,25 @@ class RightNow extends HTMLElement {
 
         getAllActivities(db).then(activities => {
             activities.forEach(activity => {
-                if (activity.title && activity.entries.length) {
-                    const heading = document.createElement('h2');
-                    heading.innerHTML = activity.title;
-                    this.append(heading);
-
-                    activity.entries.forEach(entry => {
-                        const line = document.createElement('small');
-                        line.innerHTML = entry.name;
-                        this.append(line);
-                    });
+                const line = document.createElement('small');
+                if (activity.type === BOOK_TYPE) {
+                    if (document.getElementById(BOOK_ID) === null) {
+                        const heading = document.createElement('h2');
+                        heading.id = BOOK_ID;
+                        heading.innerHTML = BOOK_TITLE;
+                        this.append(heading);
+                    }
+                    line.innerHTML = `${activity.title}, <i>by ${activity.author}</i>`;
+                } else if (activity.type === VIDEOGAME_TYPE) {
+                    if (document.getElementById(VIDEOGAME_ID) === null) {
+                        const heading = document.createElement('h2');
+                        heading.id = VIDEOGAME_ID;
+                        heading.innerHTML = VIDEOGAME_TITLE;
+                        this.append(heading);
+                    }
+                    line.innerHTML = `${activity.title}, <i>on ${activity.platform}</i>`;
                 }
+                this.append(line);
             });
 
             this.classList.remove('hidden');
