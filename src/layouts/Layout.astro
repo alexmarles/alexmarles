@@ -13,7 +13,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID = import.meta.env
+    .PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -32,12 +33,7 @@ const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
             }
             gtag('js', new Date());
 
-            gtag('consent', 'default', {
-                ad_storage: 'denied',
-                ad_user_data: 'denied',
-                ad_personalization: 'denied',
-                analytics_storage: 'granted',
-            });
+            gtag('consent', 'default', { analytics_storage: 'granted' });
 
             gtag('config', GA_MEASUREMENT_ID, {
                 send_page_view: true,
@@ -55,5 +51,15 @@ const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
         <Header path={Astro.url.pathname} transition:persist />
         <slot />
         <Footer />
+
+        <script is:inline>
+            document.addEventListener('astro:after-swap', () => {
+                window.gtag?.('event', 'page_view', {
+                    page_location: location.href,
+                    page_path: location.pathname,
+                    page_title: document.title,
+                });
+            });
+        </script>
     </body>
 </html>
