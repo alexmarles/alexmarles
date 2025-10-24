@@ -10,4 +10,4 @@ I like to design and build innovative and delightful experiences for the users �
 
 📫 You can find me in almost all social media as `@alexmarles`, although I cannot promise that I'll be talking design, tech or code in there 🙃
 
-Learn more about me in my personal website: alexmarles.com
+Learn more about me in [my personal website](https://alexmarles.com), built with Astro and hosted over at Netlify.
