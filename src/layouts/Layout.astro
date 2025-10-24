@@ -33,12 +33,7 @@ const GA_MEASUREMENT_ID = import.meta.env
             }
             gtag('js', new Date());
 
-            gtag('consent', 'default', {
-                ad_storage: 'denied',
-                ad_user_data: 'denied',
-                ad_personalization: 'denied',
-                analytics_storage: 'granted',
-            });
+            gtag('consent', 'default', { analytics_storage: 'granted' });
 
             gtag('config', GA_MEASUREMENT_ID, {
                 send_page_view: true,
