@@ -85,6 +85,10 @@ small {
     line-height: var(--fh-s);
 }
 
+i {
+    font-style: italic;
+}
+
 a {
     --link-color: var(--secondary);
 
