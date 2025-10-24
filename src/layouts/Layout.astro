@@ -51,5 +51,15 @@ const GA_MEASUREMENT_ID = import.meta.env
         <Header path={Astro.url.pathname} transition:persist />
         <slot />
         <Footer />
+
+        <script is:inline>
+            document.addEventListener('astro:after-swap', () => {
+                window.gtag?.('event', 'page_view', {
+                    page_location: location.href,
+                    page_path: location.pathname,
+                    page_title: document.title,
+                });
+            });
+        </script>
     </body>
 </html>
