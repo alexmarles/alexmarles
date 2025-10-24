@@ -36,10 +36,12 @@ const GA_MEASUREMENT_ID = import.meta.env.GOOGLE_ANALYTICS_MEASUREMENT_ID;
                 ad_storage: 'denied',
                 ad_user_data: 'denied',
                 ad_personalization: 'denied',
-                analytics_storage: 'denied',
+                analytics_storage: 'granted',
             });
 
-            gtag('config', GA_MEASUREMENT_ID);
+            gtag('config', GA_MEASUREMENT_ID, {
+                send_page_view: true,
+            });
         </script>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
