@@ -12,7 +12,7 @@ const OPTIONS = [
 
 const index = Math.floor(Math.random() * OPTIONS.length);
 
-if (typeof window !== 'undefined' && !window.sharedContentIndex) {
+if (typeof window !== 'undefined' && window.sharedContentIndex === undefined) {
     window.sharedContentIndex = index;
 }
 
