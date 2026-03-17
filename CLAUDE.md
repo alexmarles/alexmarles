@@ -35,4 +35,4 @@ All variables are prefixed `PUBLIC_` (Astro convention for client-accessible var
 - Always branch off the most updated `dev` branch for any new work.
 - All PRs target `dev`, never `main`.
 - After a PR is merged, delete both the local and remote branches.
-- To merge `dev` into `main`, do it directly — no PR needed.
+- To merge `dev` into `main`, open a PR.
