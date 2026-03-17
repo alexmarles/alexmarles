@@ -1,5 +1,5 @@
 import { app } from '../firebase/client';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, type Firestore } from 'firebase/firestore';
 
 const BOOK_TYPE = 'book';
 const VIDEOGAME_TYPE = 'videogame';
@@ -18,7 +18,7 @@ interface Activity {
 
 const db = getFirestore(app);
 
-async function getActivities(db) {
+async function getActivities(db: Firestore) {
     const activitiesSnapshot = await getDocs(collection(db, 'activities'));
     return activitiesSnapshot.docs.map(
         doc =>
@@ -29,7 +29,7 @@ async function getActivities(db) {
     );
 }
 
-async function getAllActivities(db) {
+async function getAllActivities(db: Firestore) {
     let activities: Activity[] = JSON.parse(
         sessionStorage.getItem('activities')
     );
@@ -54,7 +54,10 @@ class RightNow extends HTMLElement {
                         heading.innerHTML = BOOK_TITLE;
                         this.append(heading);
                     }
-                    line.innerHTML = `${activity.title}, <i>by ${activity.author}</i>`;
+                    line.textContent = `${activity.title}, by `;
+                    const byLine = document.createElement('i');
+                    byLine.textContent = activity.author ?? '';
+                    line.append(byLine);
                 } else if (activity.type === VIDEOGAME_TYPE) {
                     if (document.getElementById(VIDEOGAME_ID) === null) {
                         const heading = document.createElement('h2');
@@ -62,7 +65,10 @@ class RightNow extends HTMLElement {
                         heading.innerHTML = VIDEOGAME_TITLE;
                         this.append(heading);
                     }
-                    line.innerHTML = `${activity.title}, <i>on ${activity.platform}</i>`;
+                    line.textContent = `${activity.title}, on `;
+                    const onLine = document.createElement('i');
+                    onLine.textContent = activity.platform ?? '';
+                    line.append(onLine);
                 }
                 this.append(line);
             });
