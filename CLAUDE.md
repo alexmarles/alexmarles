@@ -36,3 +36,4 @@ All variables are prefixed `PUBLIC_` (Astro convention for client-accessible var
 - All PRs target `dev`, never `main`.
 - After a PR is merged, delete both the local and remote branches.
 - To merge `dev` into `main`, open a PR.
+- After every PR is merged into `main`, sync `dev` with `main` (`git checkout dev && git merge origin/main && git push origin dev`).
