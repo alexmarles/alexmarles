@@ -34,7 +34,7 @@ All variables are prefixed `PUBLIC_` (Astro convention for client-accessible var
 
 - Always branch off the most updated `dev` branch for any new work.
 - All PRs target `dev`, never `main`.
-- After a PR is merged, delete both the local and remote branches.
+- After a PR is merged, delete both the local and remote branches. Exception: never delete the `dev` branch — it is permanent.
 - To merge `dev` into `main`, open a PR.
 - After every PR is merged into `main`, sync `dev` with `main` (`git checkout dev && git merge origin/main && git push origin dev`).
 - Never merge PRs automatically. After opening a PR, share the GitHub PR link and wait for the Netlify bot to post its deploy preview comment before sharing the preview URL.
