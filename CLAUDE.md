@@ -38,3 +38,4 @@ All variables are prefixed `PUBLIC_` (Astro convention for client-accessible var
 - To merge `dev` into `main`, open a PR.
 - After every PR is merged into `main`, sync `dev` with `main` (`git checkout dev && git merge origin/main && git push origin dev`).
 - Never merge PRs automatically. After opening a PR, share the GitHub PR link and wait for the Netlify bot to post its deploy preview comment before sharing the preview URL.
+- The Netlify bot typically responds within 30 seconds (observed: median 6s, average 10s, max 29s across 19 PRs). Wait 30s after opening a PR, then retrieve and share the deploy preview URL.
