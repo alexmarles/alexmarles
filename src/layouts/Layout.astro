@@ -46,6 +46,8 @@ const GA_MEASUREMENT_ID = import.meta.env
         <meta charset="UTF-8" />
         <meta name="description" content="Àlex Marlés — UX Engineer based in Barcelona." />
         <meta name="viewport" content="width=device-width" />
+        <link rel="preload" href="/fonts/LibreFranklin-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+        <link rel="preload" href="/fonts/AndadaPro-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
@@ -57,7 +59,15 @@ const GA_MEASUREMENT_ID = import.meta.env
         <Footer />
 
         <script is:inline>
+            document.fonts.ready.then(() => {
+                document.body.classList.add('ready');
+            });
+
             document.addEventListener('astro:after-swap', () => {
+                document.fonts.ready.then(() => {
+                    document.body.classList.add('ready');
+                });
+
                 window.gtag?.('event', 'page_view', {
                     page_location: location.href,
                     page_path: location.pathname,

@@ -1,0 +1,17 @@
+<astro-inbox><a href="mailto:hello@alexmarles.com">hello@alexmarles.com</a></astro-inbox>
+
+<script>
+    import { chooseGreetingOption } from '../scripts/chooseGreetingOption.ts';
+
+    class AstroInbox extends HTMLElement {
+        constructor() {
+            super();
+            const content = chooseGreetingOption();
+            const link = this.querySelector('a');
+            link.textContent = `${content.inbox}@alexmarles.com`;
+            link.setAttribute('href', `mailto:${content.inbox}@alexmarles.com`);
+        }
+    }
+
+    customElements.define('astro-inbox', AstroInbox);
+</script>
