@@ -1,0 +1,11 @@
+<a data-inbox href="mailto:hello@alexmarles.com">hello@alexmarles.com</a>
+
+<script>
+    import { chooseGreetingOption } from '../scripts/chooseGreetingOption.js';
+
+    const content = chooseGreetingOption();
+    document.querySelectorAll('[data-inbox]').forEach((el) => {
+        el.textContent = `${content.inbox}@alexmarles.com`;
+        el.setAttribute('href', `mailto:${content.inbox}@alexmarles.com`);
+    });
+</script>
