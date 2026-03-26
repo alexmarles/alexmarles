@@ -1,8 +1,15 @@
-<h1 data-greeting></h1>
+<astro-greeting><h1></h1></astro-greeting>
 
 <script>
     import { chooseGreetingOption } from '../scripts/chooseGreetingOption.js';
 
-    const content = chooseGreetingOption();
-    document.querySelector('[data-greeting]').textContent = content.greeting;
+    class AstroGreeting extends HTMLElement {
+        constructor() {
+            super();
+            const content = chooseGreetingOption();
+            this.querySelector('h1').textContent = content.greeting;
+        }
+    }
+
+    customElements.define('astro-greeting', AstroGreeting);
 </script>
