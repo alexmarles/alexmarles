@@ -59,7 +59,15 @@ const GA_MEASUREMENT_ID = import.meta.env
         <Footer />
 
         <script is:inline>
+            document.fonts.ready.then(() => {
+                document.body.classList.add('ready');
+            });
+
             document.addEventListener('astro:after-swap', () => {
+                document.fonts.ready.then(() => {
+                    document.body.classList.add('ready');
+                });
+
                 window.gtag?.('event', 'page_view', {
                     page_location: location.href,
                     page_path: location.pathname,
