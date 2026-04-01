@@ -12,15 +12,17 @@ pnpm preview    # Preview production build locally
 
 ## Architecture
 
-Personal portfolio site built with **Astro** (static generation) + **React** (interactive islands) + **Firebase** (dynamic data).
+Personal portfolio site built with **Astro** (static generation) + **Firebase** (dynamic data). All components are `.astro` files; interactivity is handled via native custom HTML elements with inline scripts (no framework hydration).
 
 ### Key architectural patterns
 
-**Astro islands**: Most components are `.astro` (server-rendered), but `Greeting.jsx` and `Inbox.jsx` are React components hydrated client-side via `client:load`. These two components stay in sync through `chooseGreetingOption.ts`, which picks a random greeting and caches it in `window.sharedContentIndex`.
-
-**Custom HTML elements**: Dynamic content uses native custom elements rather than React:
+**Custom HTML elements**: All dynamic/interactive behavior uses native custom elements defined in inline `<script>` blocks:
+- `<astro-greeting>` (`src/components/Greeting.astro`) — displays a random greeting (English/Spanish/Swedish)
+- `<astro-inbox>` (`src/components/Inbox.astro`) — displays the matching email address
 - `<astro-right-now>` (`src/scripts/getActivities.ts`) — fetches books/videogames from Firestore, caches results in `sessionStorage`
 - `<astro-lost-gif>` (`src/pages/404.astro`) — shows a random Giphy GIF on the 404 page
+
+`<astro-greeting>` and `<astro-inbox>` stay in sync through `chooseGreetingOption.ts`, which picks a random greeting and caches the index in `window.sharedContentIndex`.
 
 **Google Analytics via Partytown**: GA scripts run in a web worker (off main thread). The `astro.config.mjs` forwards `dataLayer.push` events from the main thread to Partytown. Route-change page view events are fired manually in `Layout.astro` using Astro's `ClientRouter`.
 
@@ -28,7 +30,7 @@ Personal portfolio site built with **Astro** (static generation) + **React** (in
 
 ### Environment variables
 
-All variables are prefixed `PUBLIC_` (Astro convention for client-accessible vars). Types are declared in `src/env.d.ts`. Required vars: Firebase config (`PUBLIC_FIREBASE_*`) and `PUBLIC_GA_ID`.
+All variables are prefixed `PUBLIC_` (Astro convention for client-accessible vars). Types are declared in `src/env.d.ts`. Required vars: Firebase config (`PUBLIC_FIREBASE_*`) and `PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID`.
 
 ## Git workflow
 
